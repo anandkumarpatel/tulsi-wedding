@@ -1,7 +1,7 @@
 import Crossword from '@jaredreisinger/react-crossword'
 import './App.css'
 import { emojisplosion, emojisplosions } from 'emojisplosion'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Confetti from 'react-confetti'
 
 const data = {
@@ -44,6 +44,30 @@ const data = {
 function App() {
   const [solved, setSolved] = useState(false)
 
+  useEffect(() => {
+    const handleClick = (event: MouseEvent) => {
+      if (!solved) return
+      const x = event.clientX
+      const y = event.clientY
+      console.log(`Clicked at (${x}, ${y})`)
+      emojisplosion({
+        emojis: ['🎉', '🎊', '🎈', '🟢', '✅', '💰', '👍🏽', '🕺🏽', '😁'],
+        position() {
+          return {
+            x,
+            y: y - window.innerHeight / 2,
+          }
+        },
+      })
+    }
+
+    document.addEventListener('click', handleClick)
+
+    return () => {
+      document.removeEventListener('click', handleClick)
+    }
+  }, [solved])
+
   if (solved) {
     return (
       <>
@@ -53,6 +77,7 @@ function App() {
       </>
     )
   }
+
   return (
     <div>
       <h4>Let's see how well you know the couple!</h4>
