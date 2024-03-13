@@ -2,6 +2,7 @@ import Crossword from '@jaredreisinger/react-crossword'
 import './App.css'
 import { emojisplosion, emojisplosions } from 'emojisplosion'
 import { useState } from 'react'
+import Confetti from 'react-confetti'
 
 const data = {
   across: {
@@ -46,7 +47,9 @@ function App() {
   if (solved) {
     return (
       <>
+        <Confetti width={window.innerWidth} height={window.innerHeight} />
         <h1>Yay! You solved it!</h1>
+        <h1>Tulsi and Rishi are happy</h1>
       </>
     )
   }
