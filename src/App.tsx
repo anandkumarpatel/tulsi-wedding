@@ -51,7 +51,9 @@ function App() {
     )
   }
   return (
-    <>
+    <div>
+      <h4>Let's see how well you know the couple!</h4>
+      <p>Solve the following crossword puzzle</p>
       <Crossword
         useStorage={true}
         onCrosswordComplete={(correct: boolean) => {
@@ -68,8 +70,8 @@ function App() {
             },
           })
         }}
-        onAnswerIncorrect={(direction, number, answer) => {
-          const info = data[direction][number]
+        onAnswerIncorrect={() => {
+          // const info = data[direction][number]
           // const selector = `text[x="${info.row * 10 + 5}"][y="${info.col * 10 + 6}"]`
           // const element = document.querySelector(selector)
           emojisplosion({
@@ -83,8 +85,8 @@ function App() {
             },
           })
         }}
-        onAnswerCorrect={(direction, number, answer) => {
-          const info = data[direction][number]
+        onAnswerCorrect={() => {
+          // const info = data[direction][number]
           // const selector = `text[x="${info.row * 10 + 5}"][y="${info.col * 10 + 6}"]`
           // const element = document.querySelector(selector)
           emojisplosion({
@@ -103,7 +105,7 @@ function App() {
           highlightBackground: 'blue',
         }}
       />
-    </>
+    </div>
   )
 }
 
